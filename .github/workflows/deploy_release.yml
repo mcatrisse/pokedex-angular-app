@@ -16,7 +16,7 @@ jobs:
         with:
           node-version-file: 'package.json'
       - name: Install dependencies and build
-        run: npm ci --legacy-peer-deps && ng build --prod --serviceWorker false
+        run: npm ci --legacy-peer-deps --include=dev && ng build --prod --serviceWorker false
       - name: build_tar
         run: tar -czvf dist.tar.gz dist/*
       - name: upload offline artifact
@@ -37,7 +37,7 @@ jobs:
         with:
           node-version-file: 'package.json'
       - name: Install dependencies and build
-        run: npm ci --legacy-peer-deps && ng build --prod --serviceWorker true
+        run: npm ci --legacy-peer-deps --include=dev && ng build --prod --serviceWorker true
       - name: build_tar
         run: tar -czvf dist.tar.gz dist/*
       - name: upload windows artifact
