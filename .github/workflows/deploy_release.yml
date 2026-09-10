@@ -10,14 +10,13 @@ jobs:
   build-offline:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js 22.x
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 22.x
-        
+          node-version-file: 'package.json'
       - name: Install cli angular
-        run: sudo npm install -g @angular/cli
+        run: sudo npm install -g @angular/cli@~10.2.4          
       - name: Install dependencies and build
         run: npm ci --legacy-peer-deps && ng build --prod --serviceWorker false
       - name: build_tar
@@ -34,13 +33,13 @@ jobs:
   build-with-pwa:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js 22.x
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 22.x
+          node-version-file: 'package.json'
       - name: Install cli angular
-        run: sudo npm install -g @angular/cli
+        run: sudo npm install -g @angular/cli@~10.2.4          
       - name: Install dependencies and build
         run: npm ci --legacy-peer-deps && ng build --prod --serviceWorker true
       - name: build_tar
